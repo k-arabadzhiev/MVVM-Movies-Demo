@@ -16,6 +16,7 @@ import com.pollux.moviesmvvm.model.data.Movies
 import com.pollux.moviesmvvm.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+private const val TAG = "HomeFragment"
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), MoviesAdapter.OnItemClickListener {
 
@@ -46,6 +47,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), MoviesAdapter.OnItemClick
 
         viewModel.movies.observe(viewLifecycleOwner) {
             moviesAdapter.submitList(it)
+        }
+
+        viewModel.response.observe(viewLifecycleOwner){ response ->
+            if(response.isSuccessful){
+                Log.i(TAG, "onViewCreated: ${response.headers()}")
+            }
         }
     }
 

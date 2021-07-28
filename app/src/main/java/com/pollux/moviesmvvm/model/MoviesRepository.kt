@@ -6,5 +6,5 @@ import javax.inject.Inject
 class MoviesRepository @Inject constructor(
     private val api: MovieApiService
 ) {
-    suspend fun fetchMovies() = api.getMovies()
+    suspend fun fetchMovies(token: String) = api.getMovies(token)
 }
