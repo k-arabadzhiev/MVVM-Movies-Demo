@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MoviesMVVM</string>
+    <string name="home">Home</string>
+    <string name="watch_list">Watch list</string>
+    <string name="rd_label">Release Date:</string>
+    <string name="content_rating_label">Content Rating:</string>
+    <string name="content_rating_text">11</string>
+    <string name="average_rating_label">Average Rating:</string>
+    <string name="average_rating_text">0</string>
+    <string name="release_date_text">2018–02–28</string>
+    <string name="genres_label">Genres:</string>
+    <string name="genres_text">Drama</string>
+    <string name="actors_text">Charlotte Rampling, André Wilms, Stéphanie Van Vyve</string>
+    <string name="summary_label">Summary:</string>
+    <string name="sumarry_text">Lorem ipsum…</string>
+    <string name="actors_label">Actors:</string>
+</resources>

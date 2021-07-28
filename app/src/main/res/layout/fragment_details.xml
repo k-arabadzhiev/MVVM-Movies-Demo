@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".view.details.DetailsFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/item_container"
+                android:layout_width="match_parent"
+                android:transitionName="transition_movie_details"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:clipToPadding="false"
+                app:cardBackgroundColor="@color/posterBackground"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    tools:ignore="UnusedAttribute">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/item_poster_post"
+                        android:layout_width="match_parent"
+                        android:layout_height="370dp"
+                        android:scaleType="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_movie" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/movie_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:paddingHorizontal="8dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.058"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/item_poster_post"
+                        tools:text="Game Night" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/movie_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:paddingHorizontal="8dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/movie_title"
+                        app:layout_constraintTop_toBottomOf="@+id/item_poster_post"
+                        tools:text="(2018)" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/movie_original_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:paddingHorizontal="8dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="italic"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.051"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/movie_title"
+                        tools:text="Game Night" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/running_time_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.043"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/movie_original_title"
+                        app:layout_constraintVertical_bias="0.125"
+                        app:srcCompat="@drawable/ic_time" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/movie_running_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="10dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/running_time_icon"
+                        app:layout_constraintTop_toBottomOf="@+id/movie_original_title"
+                        tools:text="100 min" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/rating_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.06"
+                        app:layout_constraintStart_toEndOf="@+id/movie_running_time"
+                        app:layout_constraintTop_toBottomOf="@id/movie_original_title"
+                        app:layout_constraintVertical_bias="0.25"
+                        app:srcCompat="@drawable/ic_rating" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/movie_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="10dp"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/rating_icon"
+                        app:layout_constraintTop_toBottomOf="@id/movie_original_title"
+                        tools:text="6.78 / 10" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/summaryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/summary_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_container" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/summaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minLines="2"
+                android:paddingHorizontal="25dp"
+                android:text="@string/sumarry_text"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/summaryLabel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/genresLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/genres_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/summaryText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/genresText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/genres_text"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/genresLabel"
+                app:layout_constraintTop_toBottomOf="@+id/summaryText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rdLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/rd_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genresText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rdText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/release_date_text"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/rdLabel"
+                app:layout_constraintTop_toBottomOf="@+id/genresText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/crLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/content_rating_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rdLabel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/crText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/content_rating_text"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/crLabel"
+                app:layout_constraintTop_toBottomOf="@+id/rdText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/arLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/average_rating_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crLabel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/arText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/average_rating_text"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/arLabel"
+                app:layout_constraintTop_toBottomOf="@+id/crText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actorsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="10dp"
+                android:text="@string/actors_label"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/arLabel" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actorsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="25dp"
+                android:text="@string/actors_text"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/actorsLabel" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/actorsText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
