@@ -32,6 +32,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_movie" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/item_poster_post"
+                app:srcCompat="@drawable/ic_bookmark_unselected" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/movie_title"
                 android:layout_width="wrap_content"

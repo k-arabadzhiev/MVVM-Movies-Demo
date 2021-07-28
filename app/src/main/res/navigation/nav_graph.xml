@@ -21,11 +21,20 @@
         tools:layout="@layout/fragment_details" >
         <argument
             android:name="movie"
-            app:argType="com.pollux.moviesmvvm.model.data.Movies"
+            app:argType="com.pollux.moviesmvvm.model.data.MoviesDto"
             app:nullable="true"
             android:defaultValue="@null" />
         <argument
             android:name="title"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/watchListFragment"
+        android:name="com.pollux.moviesmvvm.view.watchlist.WatchListFragment"
+        android:label="Watch List"
+        tools:layout="@layout/fragment_watch_list">
+        <action
+            android:id="@+id/action_watchListFragment2_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>

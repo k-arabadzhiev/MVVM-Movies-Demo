@@ -1,5 +1,8 @@
 package com.pollux.moviesmvvm.di
 
+import android.app.Application
+import androidx.room.Room
+import com.pollux.moviesmvvm.model.data.MoviesDatabase
 import com.pollux.moviesmvvm.model.network.MovieApiService
 import com.pollux.moviesmvvm.utils.C
 import dagger.Module
@@ -44,5 +47,12 @@ object AppModule {
                 }
             )
         }.build()
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): MoviesDatabase =
+        Room.databaseBuilder(app, MoviesDatabase::class.java, "movies_database")
+            .fallbackToDestructiveMigration()
+            .build()
 
 }

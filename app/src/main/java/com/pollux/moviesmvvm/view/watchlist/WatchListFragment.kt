@@ -1,10 +1,11 @@
-package com.pollux.moviesmvvm.view.home
+package com.pollux.moviesmvvm.view.watchlist
 
+import com.pollux.moviesmvvm.view.home.MoviesAdapter
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,14 +13,16 @@ import com.google.android.material.transition.MaterialElevationScale
 import com.pollux.moviesmvvm.R
 import com.pollux.moviesmvvm.databinding.FragmentHomeBinding
 import com.pollux.moviesmvvm.model.data.MoviesDto
-import com.pollux.moviesmvvm.viewmodel.HomeViewModel
+import com.pollux.moviesmvvm.viewmodel.WatchListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
-private const val TAG = "HomeFragment"
+private const val TAG = "WatchListFragment"
+
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home), MoviesAdapter.OnItemClickListener {
+class WatchListFragment : Fragment(R.layout.fragment_watch_list), MoviesAdapter.OnItemClickListener {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: WatchListViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -42,19 +45,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), MoviesAdapter.OnItemClick
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 setHasFixedSize(true)
             }
-        }
 
-        viewModel.movies.observe(viewLifecycleOwner) {
-            moviesAdapter.submitList(it.data)
-        }
+            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+                viewModel.bookmarks.collect {
+                    val bookmarks = it ?: return@collect
 
-        viewModel.response.observe(viewLifecycleOwner){ response ->
-            if(response.isSuccessful){
-                Log.i(TAG, "onViewCreated: ${response.headers()}")
+                    moviesAdapter.submitList(bookmarks)
+                }
             }
         }
-    }
 
+    }
 
     override fun onItemClick(cardView: View, movie: MoviesDto) {
         exitTransition = MaterialElevationScale(false).apply {
@@ -70,7 +71,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MoviesAdapter.OnItemClick
             cardView to movieCardTransitionName
         )
 
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(movie, movie.title)
+        val action = WatchListFragmentDirections.actionWatchListFragment2ToDetailsFragment(movie, movie.title)
         findNavController().navigate(action, extras)
     }
 

@@ -8,12 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.pollux.moviesmvvm.R
 import com.pollux.moviesmvvm.databinding.ItemPosterBinding
-import com.pollux.moviesmvvm.model.data.Movies
+import com.pollux.moviesmvvm.model.data.MoviesDto
 import com.pollux.moviesmvvm.utils.C
 
 class MoviesAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Movies, MoviesAdapter.MoviesViewHolder>(MovieComparator()) {
+    ListAdapter<MoviesDto, MoviesAdapter.MoviesViewHolder>(MovieComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val binding = ItemPosterBinding
@@ -32,18 +33,29 @@ class MoviesAdapter(private val listener: OnItemClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.root.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val item = getItem(position)
-                    if (item != null) {
-                        listener.onItemClick(binding.itemContainer, item)
+            binding.apply {
+                root.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val item = getItem(position)
+                        if (item != null) {
+                            listener.onItemClick(binding.itemContainer, item)
+                        }
+                    }
+                }
+                bookmark.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if(position != RecyclerView.NO_POSITION){
+                        val item = getItem(position)
+                        if (item != null) {
+                            listener.onBookmarkClick(item)
+                        }
                     }
                 }
             }
         }
 
-        fun bind(movie: Movies) {
+        fun bind(movie: MoviesDto) {
             binding.apply {
                 movieTitle.text = movie.title
                 if (movie.originalTitle.isNullOrEmpty()) {
@@ -62,8 +74,7 @@ class MoviesAdapter(private val listener: OnItemClickListener) :
                 if (movie.imdbRating.isNullOrEmpty()) {
                     rating += C.MAX_RATING
                     movieRating.text = rating
-                }
-                else {
+                } else {
                     rating = movie.imdbRating + C.MAX_RATING
                     movieRating.text = rating
                 }
@@ -76,20 +87,30 @@ class MoviesAdapter(private val listener: OnItemClickListener) :
                     .centerCrop()
                     .into(itemPosterPost)
                 itemContainer.transitionName = "transition_${movie.title}"
+
+                bookmark.apply {
+                    setImageResource(
+                        when {
+                            movie.isBookmarked -> R.drawable.ic_bookmark_selected
+                            else -> R.drawable.ic_bookmark_unselected
+                        }
+                    )
+                }
             }
         }
 
     }
 
     interface OnItemClickListener {
-        fun onItemClick(cardView: View, movie: Movies)
+        fun onItemClick(cardView: View, movie: MoviesDto)
+        fun onBookmarkClick(movie: MoviesDto)
     }
 
-    class MovieComparator : DiffUtil.ItemCallback<Movies>() {
-        override fun areItemsTheSame(oldItem: Movies, newItem: Movies) =
+    class MovieComparator : DiffUtil.ItemCallback<MoviesDto>() {
+        override fun areItemsTheSame(oldItem: MoviesDto, newItem: MoviesDto) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Movies, newItem: Movies) =
+        override fun areContentsTheSame(oldItem: MoviesDto, newItem: MoviesDto) =
             oldItem == newItem
     }
 
