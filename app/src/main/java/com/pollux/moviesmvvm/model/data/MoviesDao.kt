@@ -8,7 +8,7 @@ interface MoviesDao {
     @Query("SELECT * FROM movies")
     fun getAllMovies(): Flow<List<MoviesDto>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertMovies(movies: List<MoviesDto>)
 
     @Update
@@ -17,6 +17,6 @@ interface MoviesDao {
     @Query("SELECT * FROM movies WHERE isBookmarked = 1")
     fun getAllBookmarkedMovies(): Flow<List<MoviesDto>>
 
-    @Query("DELETE FROM movies")
+    @Query("DELETE FROM movies WHERE isBookmarked = 0")
     suspend fun deleteAllMovies()
 }
